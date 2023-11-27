@@ -1,9 +1,10 @@
 <div align="center">
-    <h1>
-        <img src="./assets/Logo_UFFS.png" alt="Logo UOL" width="200px" height="60px">
-        Trabalho 1 – Aprendizado não supervisionado 
-        <img src="./assets/Logo_CC.png" alt="Logo UOL" width="200px" height="60px">
-    </h1>
+    <img src="./assets/Logo_UFFS.png" alt="Logo UOL" width="200px" height="60px">
+    <img src="./assets/Logo_CC.png" alt="Logo UOL" width="200px" height="60px">
+</div>
+
+<div align="center">
+    <h1> Trabalho 1 – Aprendizado não supervisionado </h1>
 </div>
 
 <div align="center">
