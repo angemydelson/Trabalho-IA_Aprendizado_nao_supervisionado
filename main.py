@@ -60,7 +60,7 @@ def main():
             imagem_segmentada = aplicar_kmeans(imagem, k)
 
             # Salve a imagem resultante
-            caminho_saida = f"imagens_geradas/imagem_k{k}.png"
+            caminho_saida = f"imagens_geradas/image_k{k}.png"
             salvar_imagem(imagem_segmentada, caminho_saida)
 
             # Calcule e salve as informações sobre as imagens
