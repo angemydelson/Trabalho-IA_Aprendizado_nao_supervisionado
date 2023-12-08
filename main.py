@@ -48,12 +48,22 @@ def calcular_propriedades_imagem(imagem):
 
     return resolucao, tamanho_kb, cores_unicas
 
+def imprimir_informacoes_imagem(tipo, k, propriedades, resolucao):
+    largura, altura = resolucao[1], resolucao[0]
+
+    print(f"{tipo} K={k}:")
+    print(f"  Resolução: {largura}x{altura} pixels")
+    print(f"  Tamanho em KB: {propriedades[1]:.2f} KB")
+    print(f"  Cores únicas: {propriedades[2]}\n")
+
+
+
 def salvar_imagem(imagem, caminho_saida):
     cv2.imwrite(caminho_saida, imagem)
 
 def main():
     caminho_pasta = "imagens_originais"
-    valores_k = [1, 2, 5, 6, 8, 10, 20]  # Defina os valores de k conforme necessário
+    valores_k = [1, 2, 5, 6, 8, 10, 15]  # Defina os valores de k conforme necessário
 
     for k in valores_k:
         for imagem in carregar_imagens(caminho_pasta):
@@ -63,11 +73,13 @@ def main():
             caminho_saida = f"imagens_geradas/image_k{k}.png"
             salvar_imagem(imagem_segmentada, caminho_saida)
 
-            # Calcule e salve as informações sobre as imagens
+            # Calcule e imprima as informações sobre as imagens
             propriedades_originais = calcular_propriedades_imagem(imagem)
+            resolucao_originais = imagem.shape
             propriedades_segmentadas = calcular_propriedades_imagem(imagem_segmentada)
 
-            print(f"K={k} - Original: {propriedades_originais} | Segmentada: {propriedades_segmentadas}")
+            imprimir_informacoes_imagem("Original", k, propriedades_originais, resolucao_originais)
+            imprimir_informacoes_imagem("Segmentada", k, propriedades_segmentadas, resolucao_originais)
 
 if __name__ == "__main__":
     main()
