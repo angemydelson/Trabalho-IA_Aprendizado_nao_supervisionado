@@ -87,10 +87,16 @@ def imprimir_informacoes_imagem(tipo, k, propriedades, resolucao):
         info_string = []
 
         # Adiciona informações formatadas à lista
-        info_string.append(f"{tipo} K={k}:")
-        info_string.append(f"  Resolução: {largura}x{altura} pixels")
-        info_string.append(f"  Tamanho em KB: {propriedades[1]:.2f} KB")
-        info_string.append(f"  Cores únicas: {propriedades[2]}\n")
+        if k == 0:
+            info_string.append(f"{tipo}")
+            info_string.append(f"  Resolução: {largura}x{altura} pixels")
+            info_string.append(f"  Tamanho em KB: {propriedades[1]:.2f} KB")
+            info_string.append(f"  Cores únicas: {propriedades[2]}\n")
+        else:
+            info_string.append(f"{tipo} K={k}:")
+            info_string.append(f"  Resolução: {largura}x{altura} pixels")
+            info_string.append(f"  Tamanho em KB: {propriedades[1]:.2f} KB")
+            info_string.append(f"  Cores únicas: {propriedades[2]}\n")
 
         # Retorna a lista com informações formatadas
         return info_string
@@ -153,7 +159,7 @@ def salvar_imagem(imagem, caminho_saida):
 
     
     
-def criar_pdf(informacoes, pdf_path="informacoes_imagens.pdf"):
+def criar_pdf(informacoes, pdf_path="imagens_geradas/Resultados_Imagem6/informacoes_imagens.pdf"):
     try:
         pdf = canvas.Canvas(pdf_path, pagesize=letter)
         # Definir o estilo da fonte
@@ -188,7 +194,7 @@ def criar_pdf(informacoes, pdf_path="informacoes_imagens.pdf"):
 def main():
     try:
         caminho_pasta = "imagens_originais"
-        valores_k = [1, 2, 5, 6, 8, 10, 15]
+        valores_k = [2, 5, 10, 15, 150, 200, 300]
         resolucoes, tamanhos_kb, cores_unicas = [], [], []
         verificador = 1
         informacoes = []
@@ -198,7 +204,7 @@ def main():
                 imagem_segmentada = aplicar_kmeans(imagem, k)
                 
                 # Salve a imagem resultante
-                caminho_saida = f"imagens_geradas/image_k{k}.png"
+                caminho_saida = f"imagens_geradas/Resultados_Imagem6/image_k{k}.png"
                 salvar_imagem(imagem_segmentada, caminho_saida)
                 
                 # Calcule e imprima as informações sobre as imagens
@@ -207,7 +213,7 @@ def main():
                 propriedades_segmentadas = calcular_propriedades_imagem(imagem_segmentada)
                 
                 if verificador == 1:
-                    informacoes.append(imprimir_informacoes_imagem("Informações da imagem original: ", k, propriedades_originais, resolucao_originais))
+                    informacoes.append(imprimir_informacoes_imagem("Informações da imagem original: ", 0, propriedades_originais, resolucao_originais))
                     verificador += 1
                     
                 imprimir_informacoes_imagem("Informações da imagem resultante: ", k, propriedades_segmentadas, resolucao_originais)
