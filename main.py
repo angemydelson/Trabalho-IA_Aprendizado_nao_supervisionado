@@ -159,7 +159,7 @@ def salvar_imagem(imagem, caminho_saida):
 
     
     
-def criar_pdf(informacoes, pdf_path="imagens_geradas/Resultados_Imagem3/informacoes_imagens3.pdf"):
+def criar_pdf(informacoes, pdf_path="imagens_geradas/Resultados_Imagem4/informacoes_imagens4.pdf"):
     try:
         pdf = canvas.Canvas(pdf_path, pagesize=letter)
         # Definir o estilo da fonte
@@ -194,7 +194,7 @@ def criar_pdf(informacoes, pdf_path="imagens_geradas/Resultados_Imagem3/informac
 def main():
     try:
         caminho_pasta = "imagens_originais"
-        valores_k = [2, 5, 19, 34, 150, 300, 450]
+        valores_k = [2, 10, 40, 70, 155, 255, 375]
         resolucoes, tamanhos_kb, cores_unicas = [], [], []
         verificador = 1
         informacoes = []
@@ -204,7 +204,7 @@ def main():
                 imagem_segmentada = aplicar_kmeans(imagem, k)
                 
                 # Salve a imagem resultante
-                caminho_saida = f"imagens_geradas/Resultados_Imagem3/image_k{k}.png"
+                caminho_saida = f"imagens_geradas/Resultados_Imagem4/image_k{k}.png"
                 salvar_imagem(imagem_segmentada, caminho_saida)
                 
                 # Calcule e imprima as informações sobre as imagens
